@@ -1,99 +1,110 @@
-<!-- Copyright (C) 2015 The Android Open Source Project
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-
-          http://www.apache.org/licenses/LICENSE-2.0
-
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
+<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:fillViewport="true">
+    android:layout_height="match_parent">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#EEEEEE"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:padding="16dp"
+        tools:context="com.example.hp.justjava.MainActivity">
 
         <EditText
-            android:id="@+id/name_field"
+            android:id="@+id/edit_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name"
-            android:inputType="text" />
+            android:layout_marginBottom="16dp"
+            android:hint="@string/hint"
+            android:inputType="textCapWords" />
 
         <TextView
-            style="@style/HeaderTextStyle"
-            android:text="@string/toppings" />
-
-        <CheckBox
-            android:id="@+id/whipped_cream_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/headerTextStyle"
+            android:text="@string/toppings"
+            />
+
+        <CheckBox
+            android:id="@+id/whipped_check_box_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="checkWhippedBoxClicked"
             android:paddingLeft="24dp"
             android:text="@string/whipped_cream"
+            android:textAppearance="?android:textAppearanceMedium"
             android:textSize="16sp" />
 
         <CheckBox
-            android:id="@+id/chocolate_checkbox"
+            android:id="@+id/chocolate_box_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="checkChocolateBoxClicked"
             android:paddingLeft="24dp"
             android:text="@string/chocolate"
+            android:textAppearance="?android:textAppearanceMedium"
             android:textSize="16sp" />
 
-        <TextView
-            style="@style/HeaderTextStyle"
-            android:text="@string/quantity" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            style="@style/headerTextStyle"
+            android:text="@string/quantity"
+            />
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:paddingTop="10dp">
 
             <Button
+                android:id="@+id/plus_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="10dp"
                 android:onClick="decrement"
                 android:text="-" />
 
+
             <TextView
+
                 android:id="@+id/quantity_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:text="@string/initial_quantity_value"
-                android:textColor="@android:color/black"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="16dp"
+                android:layout_toRightOf="@id/plus_button"
+                android:text="2"
+                android:textColor="#000000"
                 android:textSize="16sp" />
 
             <Button
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:layout_toRightOf="@id/quantity_text_view"
                 android:onClick="increment"
                 android:text="+" />
 
-        </LinearLayout>
+        </RelativeLayout>
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:onClick="submitOrder"
-            android:text="@string/order" />
+            android:text="Order" />
+
 
     </LinearLayout>
+
 </ScrollView>

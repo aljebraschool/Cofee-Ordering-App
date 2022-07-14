@@ -15,6 +15,7 @@
  */
 package com.example.android.justjava;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -33,124 +35,157 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
 
-    int quantity = 2;
+    int quantity = 1;
+    boolean checkChocolateBoxState = false;
+    boolean checkWhippedBoxState = false;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
     /**
-     * This method is called when the plus button is clicked.
-     */
-    public void increment(View view) {
-        if (quantity == 100) {
-            return;
-        }
-        quantity = quantity + 1;
-        displayQuantity(quantity);
-    }
-
-    /**
-     * This method is called when the minus button is clicked.
-     */
-    public void decrement(View view) {
-        if (quantity == 0) {
-            return;
-        }
-        quantity = quantity - 1;
-        displayQuantity(quantity);
-    }
-
-    /**
      * This method is called when the order button is clicked.
      */
-    public void submitOrder(View view) {
-        // Get user's name
-        EditText nameField = (EditText) findViewById(R.id.name_field);
-        Editable nameEditable = nameField.getText();
-        String name = nameEditable.toString();
+    public void submitOrder(View view)
 
-        // Figure out if the user wants whipped cream topping
-        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
-        boolean hasWhippedCream = whippedCreamCheckBox.isChecked();
+    {
 
-        // Figure out if the user wants choclate topping
-        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
-        boolean hasChocolate = chocolateCheckBox.isChecked();
+        int price = calculatePrice();
+        String name = enterEditText();
+        String message = createOrderSummary(price, checkWhippedBoxState, checkChocolateBoxState, name);
 
-        // Calculate the price
-        int price = calculatePrice(hasWhippedCream, hasChocolate);
-
-        // Display the order summary on the screen
-        String message = createOrderSummary(name, price, hasWhippedCream, hasChocolate);
-
-        // Use an intent to launch an email app.
-        // Send the order summary in the email body.
+        /*
+         * Creating an implicit intent to call an email app
+         * */
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_SUBJECT,
-                getString(R.string.order_summary_email_subject, name));
+        intent.setData(Uri.parse("mailto:"));
         intent.putExtra(Intent.EXTRA_TEXT, message);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Just Java Order for " + name);
 
+        /*
+         * Check if the device has at least one app to execute the intent before calling the startActivity method
+         * */
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivity(intent);
-        }
+        } else
+            Toast.makeText(getApplicationContext(), "No app to complete your task", Toast.LENGTH_SHORT).show();
+
+
     }
 
     /**
      * Calculates the price of the order.
-     *
-     * @param addWhippedCream is whether or not we should include whipped cream topping in the price
-     * @param addChocolate    is whether or not we should include chocolate topping in the price
-     * @return total price
      */
-    private int calculatePrice(boolean addWhippedCream, boolean addChocolate) {
-        // First calculate the price of one cup of coffee
-        int basePrice = 5;
+    private int calculatePrice()
 
-        // If the user wants whipped cream, add $1 per cup
-        if (addWhippedCream) {
-            basePrice = basePrice + 1;
+    {
+        int price = quantity * 5;
+
+        if (checkWhippedBoxState) {
+            price = price + 1;
         }
-
-        // If the user wants chocolate, add $2 per cup
-        if (addChocolate) {
-            basePrice = basePrice + 2;
+        if (checkChocolateBoxState) {
+            price = price + 2;
         }
-
-        // Calculate the total order price by multiplying by the quantity
-        return quantity * basePrice;
+        return price;
     }
 
-    /**
-     * Create summary of the order.
-     *
-     * @param name            on the order
-     * @param price           of the order
-     * @param addWhippedCream is whether or not to add whipped cream to the coffee
-     * @param addChocolate    is whether or not to add chocolate to the coffee
-     * @return text summary
-     */
-    private String createOrderSummary(String name, int price, boolean addWhippedCream,
-                                      boolean addChocolate) {
-        String priceMessage = getString(R.string.order_summary_name, name);
-        priceMessage += "\n" + getString(R.string.order_summary_whipped_cream, addWhippedCream);
-        priceMessage += "\n" + getString(R.string.order_summary_chocolate, addChocolate);
-        priceMessage += "\n" + getString(R.string.order_summary_quantity, quantity);
-        priceMessage += "\n" + getString(R.string.order_summary_price,
-                NumberFormat.getCurrencyInstance().format(price));
-        priceMessage += "\n" + getString(R.string.thank_you);
-        return priceMessage;
+    /*
+     * Method called when the box is checked/unchecked
+     * */
+
+    public void checkWhippedBoxClicked(View view) {
+        CheckBox checkBox = (CheckBox) findViewById(R.id.whipped_check_box_view);
+        checkWhippedBoxState = checkBox.isChecked();
     }
+
+    /*
+     * Method called when the box is checked/unchecked
+     * */
+
+    public void checkChocolateBoxClicked(View view) {
+        CheckBox checkBox = (CheckBox) findViewById(R.id.chocolate_box_view);
+        checkChocolateBoxState = checkBox.isChecked();
+    }
+
+
+    /*
+     * @param price for the quantities ordered
+     * @param whippedCheckBox stores the state of WhippedcheckBox
+     * @param chocolateCheckBox stores the state of chocolatecheckBox
+     * method returns summaried order
+     * */
+    private String createOrderSummary(int price, boolean whippedCheckBox, boolean chocolateCheckBox, String name)
+    {
+        return "Name: " + name + "\nAdd whipped cream? " + whippedCheckBox
+                + "\nAdd Chocolate? " + chocolateCheckBox +
+                "\nQuantity: " + quantity + "\nTotal: $"
+                + calculatePrice() + "\n" + getString(R.string.thank_you);
+    }
+
+    /*
+     * Method that keep track of the user name entered!
+     * */
+    private String enterEditText()
+    {
+        EditText enteredText = (EditText) findViewById(R.id.edit_text_view);
+
+        String myName = enteredText.getText().toString();
+
+        return myName;
+    }
+
+    /*
+     * Method called when the increment button is pressed
+     * */
+    public void increment(View view)
+    {
+        if (quantity >= 1 && quantity <= 99)
+            quantity += 1;
+        else
+            showToastMessage();
+        display(quantity);
+    }
+
+    /*
+     * Method called when the decrement button is pressed
+     * */
+    public void decrement(View view)
+    {
+        if (quantity > 1)
+            quantity -= 1;
+        else
+            showToastMessage();
+        display(quantity);
+    }
+
+    /*
+     * Method called to make a toast message
+     * */
+    public void showToastMessage()
+    {
+        Context context = getApplicationContext();
+        CharSequence text = "You have reached its limit";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void displayQuantity(int numberOfCoffees) {
-        TextView quantityTextView = (TextView) findViewById(
-                R.id.quantity_text_view);
-        quantityTextView.setText("" + numberOfCoffees);
+    private void display(int number)
+    {
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
+        quantityTextView.setText(String.valueOf(number));
     }
+
+
 }
