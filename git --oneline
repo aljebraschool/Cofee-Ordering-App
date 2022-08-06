@@ -1,0 +1,112 @@
+[33mcommit 7bce84533f1f02635a0fd05f49bf54844434a833[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: HP <aljebraschoolofthought@gmail.com>
+Date:   Thu Jul 14 04:56:51 2022 +0100
+
+    initial commit
+
+[33mcommit 066561224582ed1ec25f2575791a14eab1b073c4[m
+Author: Sudhanshu Kulshrestha <48475411+SudKul@users.noreply.github.com>
+Date:   Wed Jun 15 15:08:31 2022 +0530
+
+    Deprecated Repository
+
+[33mcommit d46fe14bb136b5a60cc3016e730d6057459e56a3[m
+Author: Sudhanshu Kulshrestha <48475411+SudKul@users.noreply.github.com>
+Date:   Tue Feb 15 17:49:01 2022 +0530
+
+    Update manual.yml
+
+[33mcommit af323145f659825a117ebd64da7d38d13a81f713[m
+Merge: 3d33202 b9dcfd0
+Author: Sudhanshu Kulshrestha <48475411+SudKul@users.noreply.github.com>
+Date:   Wed Feb 9 20:41:07 2022 +0530
+
+    Merge pull request #7 from tejasvx/patch-2
+    
+    Add fillViewport='true' to activity_main_xml
+
+[33mcommit 3d33202c7560b66838ca61795af23f1a32b52168[m
+Author: Sudhanshu Kulshrestha <48475411+SudKul@users.noreply.github.com>
+Date:   Wed Feb 9 12:42:23 2022 +0530
+
+    Update README.md
+    
+    Add snapshot.
+
+[33mcommit a88e0e625173cb57df48fdf9d96fd606ed5a36bd[m
+Author: sudkul <sudhanshu.kulshrestha@gmail.com>
+Date:   Tue Feb 8 19:31:42 2022 +0530
+
+    Upgrade dependencies and SDK.
+
+[33mcommit 0b40c38c583673e7e73db1bf037d834a8078949b[m
+Author: SudKul <48475411+SudKul@users.noreply.github.com>
+Date:   Mon Nov 15 12:44:14 2021 +0530
+
+    Add Github Action
+
+[33mcommit 054841aff6246ed791386308546ed6b9f9f01f69[m
+Author: SudKul <48475411+SudKul@users.noreply.github.com>
+Date:   Thu Oct 21 19:00:29 2021 +0530
+
+    Create CODEOWNERS
+
+[33mcommit b9dcfd03a10182f568f49be2013f2738cb5f5529[m
+Author: tejasvx <devtejasv1996@gmail.com>
+Date:   Tue Jan 10 00:11:52 2017 +0530
+
+    update in line 20
+    
+    added android:fillViewport="true" as it will make  scrollview to stretch its content to fill the viewport,
+
+[33mcommit d461bd2f78261018b1c63382aa67deb1112a3125[m
+Author: Louis <louis.webb@udacity.com>
+Date:   Wed Sep 7 12:23:26 2016 -0700
+
+    Update SDK and Gradle version
+
+[33mcommit 24273f4f28c8936a29869bb9fa981af4e45f73a2[m
+Merge: a8fe99d ff52136
+Author: louis-udacity <louis.webb@udacity.com>
+Date:   Thu Aug 25 17:05:26 2016 -0700
+
+    Merge pull request #2 from elmaystro/patch-1
+    
+    Update MainActivity.java
+
+[33mcommit a8fe99d0c892106372f6266de3ad2e43612ee5e4[m
+Merge: d60ff1e f786310
+Author: louis-udacity <louis.webb@udacity.com>
+Date:   Thu Aug 25 17:05:01 2016 -0700
+
+    Merge pull request #3 from elmaystro/patch-2
+    
+    Update MainActivity.java
+
+[33mcommit f786310d47d8e6ad2452df77a0815e17d1e7f36c[m
+Author: Ahmed Samir <ahmedsamir23794@gmail.com>
+Date:   Fri Aug 19 22:30:58 2016 +0200
+
+    Update MainActivity.java
+    
+    Updating wrong comments.
+
+[33mcommit ff52136586a76f2c94a412c27d1ad998ea0cbe0d[m
+Author: Ahmed Samir <ahmedsamir23794@gmail.com>
+Date:   Fri Aug 19 22:23:54 2016 +0200
+
+    Update MainActivity.java
+    
+    correcting a comment.
+
+[33mcommit d60ff1e2278d3ceee732374cd14631d38e4c0e53[m
+Author: Lyla <lyla@udacity.com>
+Date:   Tue Jul 7 17:37:17 2015 -0700
+
+    Final state of app at end of Lesson 3
+
+[33mcommit ee200866c854fb2c5c2f86061999d582923235fa[m
+Author: Lyla <lyla@udacity.com>
+Date:   Sun May 24 19:44:54 2015 -0700
+
+    Final state of app
